@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Website Project</title>
+    <h6>CS 1130 - Introduction to Computing</h6>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #031716, #032F30, #274D60);
+            color: white;
+            min-height: 100vh;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 25%;
+            border: 3px solid #6BA3BE;
+            display: block;
+            margin: 0 auto 15px;
+        }
+
+        header h1 {
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #b9d9dc;
+        }
+
+        .content {
+            background: #032F30;
+            border: 1px solid #0A7075;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #6BA3BE;
+        }
+
+        .assignment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .assignment {
+            background: #0A7075;
+            border: 1px solid #0C969C;
+            border-radius: 10px;
+            padding: 25px 15px;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+
+        .assignment:hover {
+            background: #0C969C;
+        }
+
+        .assignment h3 {
+            margin-bottom: 8px;
+        }
+
+        .assignment p {
+            font-size: 13px;
+            color: #e0f1f2;
+        }
+
+        .calculator {
+            display: none;
+        }
+
+        .calculator h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 7px;
+            color: #d7eeee;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #6BA3BE;
+            border-radius: 6px;
+            background: #031716;
+            color: white;
+            font-size: 15px;
+        }
+
+        button {
+            border: none;
+            border-radius: 6px;
+            padding: 12px 18px;
+            margin-top: 18px;
+            background: #0C969C;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #6BA3BE;
+        }
+
+        .back-button {
+            background: #274D60;
+            margin-left: 8px;
+        }
+
+        .result {
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 6px;
+            background: #031716;
+            color: #6BA3BE;
+            overflow-wrap: break-word;
+        }
+
+        .result:empty {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .content {
+                padding: 18px;
+            }
+
+            .assignment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .assignment {
+                padding: 20px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <img
+            class="profile"
+            src="image(20261123-122958).png"
+            alt="Jayson Gomez"
+        >
+
+        <h1>Website Project 2026</h1>
+        <h5>Created By:Jayson Gomez</h5>
+    </header>
+
+    <div class="content" id="menu">
+
+    <h2>Select a Project...</h2>
+
+    <div class="assignment-grid">
+
+        <button class="assignment" onclick="showPage('conversion')">
+            <h3>Conversion</h3>
+        </button>
+
+        <button class="assignment" onclick="showPage('tax')">
+            <h3>Income Tax Calculator</h3>
+        </button>
+
+        <button class="assignment" onclick="showPage('loops')">
+            <h3>Loop Calculations</h3>
+        </button>
+
+        <button class="assignment" onclick="showPage('payroll')">
+            <h3>Payroll Calculator</h3>
+        </button>
+
+    </div>
+</div>
+
+    <!-- ASSIGNMENT 1 -->
+    <div class="content calculator" id="conversion">
+
+        <h2>Temperature and Length Conversion</h2>
+
+        <label>Enter Value:</label>
+        <input type="number" id="convertValue" placeholder="Enter value">
+
+        <label>Select Conversion:</label>
+        <select id="conversionType">
+            <option value="ftoc">Fahrenheit to Celsius</option>
+            <option value="ctof">Celsius to Fahrenheit</option>
+            <option value="mtof">Meters to Feet</option>
+            <option value="ftom">Feet to Meters</option>
+        </select>
+
+        <button onclick="convert()">Convert</button>
+        <h3 class="result" id="conversionResult"></h3>
+
+        <button class="back-button" onclick="showPage('menu')">
+            Back to Menu
+        </button>
+    </div>
+
+    <!-- ASSIGNMENT 2 -->
+    <div class="content calculator" id="tax">
+
+        <h2>Income Tax Calculator</h2>
+
+        <label>Taxable Income:</label>
+        <input type="number" id="income" placeholder="Enter taxable income">
+
+        <button onclick="calculateTax()">Calculate Tax</button>
+        <h3 class="result" id="taxResult"></h3>
+
+        <button class="back-button" onclick="showPage('menu')">
+            Back to Menu
+        </button>
+    </div>
+
+    <!-- ASSIGNMENT 3 -->
+    <div class="content calculator" id="loops">
+
+        <h2>Loop Calculations</h2>
+
+        <label>Enter a Number:</label>
+        <input type="number" id="number" placeholder="Enter a number">
+
+        <button onclick="calculateLoops()">Calculate</button>
+
+        <h3 class="result" id="factorialResult"></h3>
+        <h3 class="result" id="sumResult"></h3>
+        <h3 class="result" id="averageResult"></h3>
+
+        <button class="back-button" onclick="showPage('menu')">
+            Back to Menu
+        </button>
+    </div>
+
+    <!-- ASSIGNMENT 4 -->
+    <div class="content calculator" id="payroll">
+
+        <h2>Payroll Calculator</h2>
+
+        <label>Employee Name:</label>
+        <input type="text" id="employeeName" placeholder="Enter employee name">
+
+        <label>Hours Worked:</label>
+        <input type="number" id="hours" placeholder="Enter hours worked">
+
+        <label>Rate per Hour:</label>
+        <input type="number" id="rate" placeholder="Enter hourly rate">
+
+        <button onclick="calculatePayroll()">Calculate Payroll</button>
+        <h3 class="result" id="payrollResult"></h3>
+
+        <button class="back-button" onclick="showPage('menu')">
+            Back to Menu
+        </button>
+    </div>
+
+</div>
+
+<script>
+
+    function showPage(page) {
+        document.getElementById("menu").style.display = "none";
+
+        document.querySelectorAll(".calculator").forEach(function(div) {
+            div.style.display = "none";
+        });
+
+        if (page === "menu") {
+            document.getElementById("menu").style.display = "block";
+        } else {
+            document.getElementById(page).style.display = "block";
+        }
+    }
+
+    // ASSIGNMENT 1: CONVERSION
+    function convert() {
+        let value = parseFloat(document.getElementById("convertValue").value);
+        let type = document.getElementById("conversionType").value;
+        let result;
+
+        if (type === "ftoc") {
+            result = (value - 32) * 5 / 9;
+            document.getElementById("conversionResult").innerHTML =
+                "Celsius: " + result.toFixed(2);
+        }
+        else if (type === "ctof") {
+            result = (value * 9 / 5) + 32;
+            document.getElementById("conversionResult").innerHTML =
+                "Fahrenheit: " + result.toFixed(2);
+        }
+        else if (type === "mtof") {
+            result = value * 3.28084;
+            document.getElementById("conversionResult").innerHTML =
+                "Feet: " + result.toFixed(2);
+        }
+        else if (type === "ftom") {
+            result = value / 3.28084;
+            document.getElementById("conversionResult").innerHTML =
+                "Meters: " + result.toFixed(2);
+        }
+    }
+
+    // ASSIGNMENT 2: INCOME TAX
+    function calculateTax() {
+        let income = parseFloat(document.getElementById("income").value);
+        let tax;
+
+        if (income <= 250000) {
+            tax = 0;
+        }
+        else if (income <= 400000) {
+            tax = (income - 250000) * 0.15;
+        }
+        else if (income <= 800000) {
+            tax = 22500 + (income - 400000) * 0.20;
+        }
+        else if (income <= 2000000) {
+            tax = 102500 + (income - 800000) * 0.25;
+        }
+        else if (income <= 8000000) {
+            tax = 402500 + (income - 2000000) * 0.30;
+        }
+        else {
+            tax = 2202500 + (income - 8000000) * 0.35;
+        }
+
+        document.getElementById("taxResult").innerHTML =
+            "Income Tax: ₱" + tax.toFixed(2);
+    }
+
+    // ASSIGNMENT 3: LOOPS
+    function calculateLoops() {
+        let n = parseInt(document.getElementById("number").value);
+
+        if (isNaN(n) || n < 1) {
+            alert("Please enter a number greater than 0.");
+            return;
+        }
+
+        let factorial = 1;
+        let i = 1;
+
+        while (i <= n) {
+            factorial *= i;
+            i++;
+        }
+
+        let sum = 0;
+        let j = 1;
+
+        do {
+            sum += j;
+            j++;
+        } while (j <= n);
+
+        let total = 0;
+
+        for (let k = 1; k <= n; k++) {
+            total += k;
+        }
+
+        let average = total / n;
+
+        document.getElementById("factorialResult").innerHTML =
+            "Factorial: " + factorial;
+
+        document.getElementById("sumResult").innerHTML =
+            "Sum: " + sum;
+
+        document.getElementById("averageResult").innerHTML =
+            "Average: " + average.toFixed(2);
+    }
+
+    // ASSIGNMENT 4: PAYROLL
+    function calculatePayroll() {
+        let name = document.getElementById("employeeName").value;
+        let hours = parseFloat(document.getElementById("hours").value);
+        let rate = parseFloat(document.getElementById("rate").value);
+
+        let grossPay = hours * rate;
+        let deduction = grossPay * 0.10;
+        let netPay = grossPay - deduction;
+
+        document.getElementById("payrollResult").innerHTML =
+            "Employee Name: " + name +
+            "<br>Gross Pay: ₱" + grossPay.toFixed(2) +
+            "<br>Deduction: ₱" + deduction.toFixed(2) +
+            "<br>Net Pay: ₱" + netPay.toFixed(2);
+    }
+
+</script>
+
+</body>
+</html>
